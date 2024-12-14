@@ -112,8 +112,45 @@ public class Board {
         }
     }
 
-    int public diagonalCheck (){
-        
+    int public diagonalCheck() {
+        int count = 0;
+        String piezaActual;
+
+        for (int i = 0; i <= filas - 4; i++) {
+            for (int j = 0; j <= columnas - 4; j++) {
+                count = 0;
+                piezaActual = tablero[i][j];
+                for (int k = 0; k < 4; k++) {
+                    if (tablero[i + k][j + k] == piezaActual && piezaActual != "-") {
+                        count++;
+                    } else {
+                        break;
+                    }
+                }
+                if (count == 4) {
+                    return 1;
+                }
+            }
+        }
+
+        for (int i = 3; i < filas; i++) {
+            for (int j = 0; j <= columnas - 4; j++) {
+                count = 0;
+                piezaActual = tablero[i][j];
+                for (int k = 0; k < 4; k++) {
+                    if (tablero[i - k][j + k] == piezaActual && piezaActual != "-") {
+                        count++;
+                    } else {
+                        break;
+                    }
+                }
+                if (count == 4) {
+                    return 1;
+                }
+            }
+        }
+
+        return 0; // No hay ganador
     }
 
     int public entregarGanador(){
@@ -127,5 +164,4 @@ public class Board {
         }
         return winner;
     }
-
 }
