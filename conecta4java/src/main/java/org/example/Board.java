@@ -1,3 +1,5 @@
+import org.example.*;
+
 public class Board {
     //se crean las variables a usar y se modifican como 'final' de manera que no puedan ser modificadas
     private final String[][] tablero;
@@ -16,7 +18,7 @@ public class Board {
     }
 
     //se puede jugar?
-    bool public canPlay?(){
+    public bool canPlay?(){
         int i = 0;
         for (int j = 0; j < columnas; j++){
             if(tablero[i][j] == "-"){ //si es jugable
@@ -29,7 +31,7 @@ public class Board {
         }
     }
 
-    int public playPiece(String color, int columna){
+    public int playPiece(String color, int columna){
         if(columna > 6){
             break; //fuera de rango
         }
@@ -52,7 +54,7 @@ public class Board {
         }
     }
 
-    int public verticalCheck(){
+    public int verticalCheck(){
         int j = 0;
         int count = 0;
         String piezaActual;
@@ -82,7 +84,7 @@ public class Board {
         }
     }
 
-    int public horizontalCheck() {
+    public int horizontalCheck() {
         int i = 0;
         int count = 0;
         String piezaActual;
@@ -112,7 +114,7 @@ public class Board {
         }
     }
 
-    int public diagonalCheck() {
+    public int diagonalCheck() {
         int count = 0;
         String piezaActual;
 
@@ -153,7 +155,7 @@ public class Board {
         return 0; // No hay ganador
     }
 
-    int public entregarGanador(){
+    public int entregarGanador(){
         int winner = 0;
 
         while(winner == 0){

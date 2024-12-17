@@ -1,3 +1,5 @@
+import org.example.*;
+
 public class Piece {
     private String color;
 
