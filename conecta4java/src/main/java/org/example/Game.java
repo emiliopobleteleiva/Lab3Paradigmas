@@ -52,12 +52,23 @@ public class Game {
         return tablero;
     }
 
-    public Game endGame(){
+    public void endGame(){
+        int winner = boardGetState().entregarGanador();
 
+        if(winner == p1.getID){
+            p1.playerWon();
+            p2.playerLost();
+        }
+        else if(winner == p2.getID()){
+            p1.playerLost();
+            p2.playerWon();
+        }
+        else{
+            p1.playerDraw();
+        }
     }
 
-    public Game realizarMovimiento(Player p, int columna){
-        
-        return Game;
+    public void realizarMovimiento(Player p, int columna){
+        boardGetState().playPiece(p.getColor(), columna);
     }
 }

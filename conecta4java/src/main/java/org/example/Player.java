@@ -55,7 +55,7 @@ public class Player{
     public void playerLost(){
         losses++;
     }
-    public void plawerDraw(){
+    public void playerDraw(){
         draws++;
     }
 }
