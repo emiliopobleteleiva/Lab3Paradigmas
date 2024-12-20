@@ -1,17 +1,37 @@
-package org.example;
+import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        Game game = null;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        while(true){
+            System.out.println("Conecta4 - Menú Principal:");
+            System.out.println("1. Crear nuevo juego");
+            System.out.println("2. Visualizar estado actual");
+            System.out.println("3. Realizar jugada");
+            System.out.println("4. Ver estadísticas generales");
+            System.out.println("5. Salir del juego");
+            System.out.print("Elige opción: ");
+
+            int option = scanner.nextInt();
+            scanner.nextLine();
+                switch (option){
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        System.out.println("Saliendo del juego.");
+                        break;
+                    default:
+                        System.out.println("Ingresa un número válido.");
+                }
         }
     }
+
 }
