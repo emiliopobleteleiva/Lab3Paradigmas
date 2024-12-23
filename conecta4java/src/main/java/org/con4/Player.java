@@ -1,19 +1,19 @@
-import org.example.*;
+package org.con4;
 
 public class Player{
     private int id;
     private String name;
-    private String color;
+    private Piece piece;
     private int wins;
     private int losses;
     private int draws;
     private int remainingPieces;
 
     //crear clase Player
-    public Player(int id, String name, String color, int remainingPieces){
+    public Player(int id, String name, String colorString, int remainingPieces){
         this.id = id;
         this.name = name;
-        this.color = color;
+        this.piece = new Piece(colorString, this);
         this.wins = 0;
         this.losses = 0;
         this.draws = 0;
@@ -27,9 +27,15 @@ public class Player{
     public String getName() {
         return name;
     }
-    public String getColor() {
-        return color;
+
+    public Piece getPiece(){
+        return piece;
     }
+
+    public String getColor() {
+        return piece.getColor();
+    }
+
     public int getWins() {
         return wins;
     }
@@ -44,7 +50,7 @@ public class Player{
     }
 
     //modificadores
-    public void useFicha(){
+    public void usePiece(){
         if (remainingPieces > 0){
             remainingPieces--;
         }

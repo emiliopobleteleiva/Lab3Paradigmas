@@ -1,9 +1,14 @@
 plugins {
     id("java")
+    application
 }
 
-group = "org.example"
+group = "org.con4"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass.set("org.con4.Main") // Clase principal con paquete completo
+}
 
 repositories {
     mavenCentral()
