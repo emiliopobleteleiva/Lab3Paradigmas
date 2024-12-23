@@ -1,9 +1,9 @@
 package org.con4;
 
 public class Player{
-    private int id;
-    private String name;
-    private Piece piece;
+    final private int id;
+    final private String name;
+    final private Piece piece;
     private int wins;
     private int losses;
     private int draws;

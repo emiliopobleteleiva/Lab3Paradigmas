@@ -70,12 +70,49 @@ public class Main {
                                     played = game.realizarMovimiento(p, columna - 1);
                                 }
                                 break;
-                            case 2:
+
+                            case 2: //visualizar estado actual
+                                System.out.println("### Visualizar estado actual ###");
+                                System.out.println("Jugador 1: " + player1.getName() + " (" + player1.getColor() + "). " + player1.getRemainingPieces() + " Piezas restantes.");
+                                System.out.println("Jugador 2: " + player2.getName() + " (" + player2.getColor() + "). " + player2.getRemainingPieces() + " Piezas restantes.");
+                                System.out.println("Turno de " + game.getCurrentPlayer().getName() + " (Jugador "+ game.getCurrentPlayer().getId()+ ").");
+                                game.boardGetState();
+
                                 break;
-                            case 3:
+
+                            case 3: //ver estadísticas generales
+                                System.out.println("\n### Visualizar estadísticas generales ###");
+                                System.out.println("Jugador 1: ");
+                                System.out.println("Nombre: " + player1.getName() + "\nColor: " + player1.getColor() + "\nPiezas restantes: " + player1.getRemainingPieces());
+                                System.out.println("- Victorias: "+ player1.getWins());
+                                System.out.println("- Derrotas: " + player1.getLosses());
+                                System.out.println("- Empates: " + player1.getDraws());
+
+                                System.out.println("\nJugador 2: ");
+                                System.out.println("Nombre: " + player2.getName() + "\nColor: " + player2.getColor() + "\nPiezas restantes: " + player2.getRemainingPieces());
+                                System.out.println("- Victorias: "+ player2.getWins());
+                                System.out.println("- Derrotas: " + player2.getLosses());
+                                System.out.println("- Empates: " + player2.getDraws());
                                 break;
+
                             case 4:
-                                inGame = false;
+                                scanner.nextLine();
+                                String resp = "";
+                                while (resp.isEmpty() || (resp.charAt(0) != 's' && resp.charAt(0) != 'n')){
+
+                                    System.out.print("¿Estas seguro de terminar la partida? (s/n): ");
+                                    resp = scanner.nextLine().toLowerCase();
+
+                                    if(!resp.isEmpty()) {
+                                        if (resp.charAt(0) == 's') {
+                                            System.out.println("El juego se termina.");
+                                            inGame = false;
+                                        }
+                                    }
+                                }
+                                break;
+
+                            default:
                                 break;
                         }
                         //comprobar quien es ganador
@@ -86,7 +123,7 @@ public class Main {
                                 game.endGame();
                                 inGame = false;
                             }
-                            else {
+                            else if(inGame){
                                 System.out.println("El juego continúa.");
                             }
                         }
@@ -101,55 +138,19 @@ public class Main {
                     break;
 
                 case 2: //terminar juego
-                    System.out.println("Saliendo del juego.");
-                    gameloop = false;
-                    break;
-                case 3: // Caso de pruebas
-                    System.out.println("### Caso de Pruebas ###");
-                    // Crear jugadores directamente
-                    Player playertest1 = new Player(1, "emilio", "rojo", 10);
-                    Player playertest2 = new Player(2, "mac", "negro", 10);
+                    String resp = "";
+                    while (resp.isEmpty() || (resp.charAt(0) != 's' && resp.charAt(0) != 'n')){
 
-                    // Crear el juego
-                    Game gametest = new Game(playertest1, playertest2);
+                        System.out.print("¿Estas seguro que quieres salir del juego? (s/n): ");
+                        resp = scanner.nextLine().toLowerCase();
 
-                    // Simular jugadas
-                    System.out.println("\nSimulando un juego en el que gana 'mac' (negro) por diagonal...");
-
-                    // Turno 1: emilio
-                    gametest.realizarMovimiento(playertest1, 0); // Columna 1
-                    // Turno 2: mac
-                    gametest.realizarMovimiento(playertest2, 1); // Columna 2
-                    // Turno 3: emilio
-                    gametest.realizarMovimiento(playertest1, 1); // Columna 2
-                    // Turno 4: mac
-                    gametest.realizarMovimiento(playertest2, 2); // Columna 3
-                    // Turno 5: emilio
-                    gametest.realizarMovimiento(playertest1, 2); // Columna 3
-                    // Turno 6: mac
-                    gametest.realizarMovimiento(playertest2, 3); // Columna 4
-                    // Turno 7: emilio
-                    gametest.realizarMovimiento(playertest1, 2); // Columna 3
-                    // Turno 8: mac
-                    gametest.realizarMovimiento(playertest2, 3); // Columna 4
-                    // Turno 9: emilio
-                    gametest.realizarMovimiento(playertest1, 3); // Columna 4
-                    // Turno 10: mac (gana con diagonal)
-                    gametest.realizarMovimiento(playertest2, 1); // Columna 4
-                    gametest.realizarMovimiento(playertest1, 3); // Columna 4
-
-                    // Mostrar estado final del tablero
-                    System.out.println("\nTablero final:");
-                    gametest.boardGetState();
-
-                    // Comprobar el ganador
-                    int winner = gametest.getBoard().entregarGanador();
-                    if (winner != 0) {
-                        System.out.println("\n¡El ganador es el Jugador " + winner + " (" + (winner == 1 ? playertest1.getName() : playertest2.getName()) + ")!");
-                    } else {
-                        System.out.println("\nEl juego terminó en empate.");
+                        if(!resp.isEmpty()) {
+                            if (resp.charAt(0) == 's') {
+                                System.out.println("\nSe cierra el juego.");
+                                gameloop = false;
+                            }
+                        }
                     }
-
                     break;
 
                 default:

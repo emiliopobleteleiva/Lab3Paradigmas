@@ -43,7 +43,7 @@ public class Board {
         }
         else{
             for(int i = 5; i >= 0; i--){
-                if(tablero[i][columna].getColor() == "-"){
+                if(tablero[i][columna] == noPiece){
                     tablero[i][columna] = piece;
                     System.out.println("\nMovimiento realizado: ");
                     return true;
@@ -163,8 +163,7 @@ public class Board {
     }
 
     public int entregarGanador(){
-        int winner = 0;
-        winner = this.verticalCheck();
+        int winner = this.verticalCheck();
         if (winner != 0) {
             return winner; // Termina si hay un ganador
         }
