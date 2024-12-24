@@ -1,6 +1,6 @@
 package org.con4;
 
-public class Board {
+public class Board implements BoardMetodos{
     //se crean las variables a usar y se modifican como 'final' de manera que no puedan ser modificadas
     private final Piece[][] tablero;
     private final int filas = 6;
@@ -20,10 +20,8 @@ public class Board {
         }
     }
 
-    public Piece[][] getBoard(){
-        return tablero;
-    }
     //se puede jugar?
+    @Override
     public boolean canPlay(){
         boolean playable = false;
         for(int i = 0; i < 6; i++){
@@ -36,6 +34,7 @@ public class Board {
         return playable;
     }
 
+    @Override
     public boolean playPiece(Piece piece, int columna){
         if(columna > 6 || columna < 0){
             System.out.println("Valor columna fuera de rango."); //fuera de rango
@@ -54,6 +53,7 @@ public class Board {
         }
     }
 
+    @Override
     public void printBoard() {
         for (int i = 0; i < filas; i++) {
             //print "|"
@@ -67,6 +67,7 @@ public class Board {
         }
     }
 
+    @Override
     public int verticalCheck(){
         int count = 0;
         Piece piezaActual = noPiece;
@@ -94,6 +95,7 @@ public class Board {
         return 0;
     }
 
+    @Override
     public int horizontalCheck() {
         int count = 0;
         Piece piezaActual = noPiece;
@@ -121,6 +123,7 @@ public class Board {
         return 0;
     }
 
+    @Override
     public int diagonalCheck() {
         int count = 0;
         Piece piezaActual = noPiece;
@@ -162,6 +165,7 @@ public class Board {
         return 0; // No hay ganador
     }
 
+    @Override
     public int entregarGanador(){
         int winner = this.verticalCheck();
         if (winner != 0) {

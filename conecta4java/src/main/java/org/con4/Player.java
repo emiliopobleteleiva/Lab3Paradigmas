@@ -1,6 +1,6 @@
 package org.con4;
 
-public class Player{
+public class Player implements PlayerMetodos{
     final private int id;
     final private String name;
     final private Piece piece;
@@ -20,7 +20,7 @@ public class Player{
         this.remainingPieces = remainingPieces;
     }
 
-    //obtenedores de informacion
+    //getters / obtenedores de info
     public int getId(){
         return id;
     }
@@ -50,18 +50,40 @@ public class Player{
     }
 
     //modificadores
+    @Override
     public void usePiece(){
         if (remainingPieces > 0){
             remainingPieces--;
         }
     }
+
+    @Override
     public void playerWon(){
         wins++;
     }
+
+    @Override
     public void playerLost(){
         losses++;
     }
+
+    @Override
     public void playerDraw(){
         draws++;
+    }
+
+    @Override
+    public void actualizarEstadisticas(int event){
+        switch(event){
+            case 0:
+                this.playerDraw();
+                break;
+            case 1:
+                this.playerLost();
+                break;
+            case 2:
+                this.playerWon();
+                break;
+        }
     }
 }

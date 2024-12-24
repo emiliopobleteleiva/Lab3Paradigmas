@@ -1,23 +1,44 @@
 package org.con4;
 
-public class Game {
+import java.util.List;
+import java.util.ArrayList;
+
+public class Game implements GameMetodos {
     public Player p1;
     public Player p2;
     public Board board;
     public int currentTurn;
-    public int history[];
+    public List<Object[]> history;
 
+    //constructor
     public Game(Player p1, Player p2){
         this.p1 = p1;
         this.p2 = p2;
         this.board = new Board();
         this.currentTurn = 1;
+        this.history = new ArrayList<>();
     }
 
-    public int[] getHistory(){
+    //getter history
+    @Override
+    public List<Object[]> getHistory(){
         return history;
     }
 
+    //métodos
+    @Override
+    public void printHistory() {
+        System.out.println("\nHistorial de movimientos: ");
+        int i = 1;
+        for (Object[] move : history) {
+            Piece piece = (Piece) move[0];
+            int column = (int) move[1] + 1;
+            System.out.println("Movimiento "+ i + ":\n-Pieza: " + piece.getColor() + " (" + piece.getPlayer().getName() + ")\n-Columna: " + column );
+            i++;
+        }
+    }
+
+    @Override
     public boolean esEmpate(){
         if(board.canPlay()){
             if(p1.getRemainingPieces() + p2.getRemainingPieces() == 0){
@@ -32,6 +53,7 @@ public class Game {
         }
     }
 
+    @Override
     public Player getCurrentPlayer(){
         if(currentTurn == p1.getId()){
             return p1;
@@ -41,15 +63,18 @@ public class Game {
         }
     }
 
+    @Override
     public Board boardGetState(){
         board.printBoard();
         return board;
     }
 
+    @Override
     public Board getBoard(){
         return board;
     }
 
+    @Override
     public void endGame(){
         int winner = this.getBoard().entregarGanador();
 
@@ -80,11 +105,15 @@ public class Game {
 
     }
 
+    @Override
     public boolean realizarMovimiento(Player p, int columna){
         if(board.playPiece(p.getPiece(), columna)){
             p.usePiece();
             currentTurn = 3 - p.getId();
             Board board = this.boardGetState();
+            Object[] move = {p.getPiece(), columna};
+            history.add(move);
+
             return true;
         }
        else{

@@ -72,27 +72,27 @@ public class Main {
                                 break;
 
                             case 2: //visualizar estado actual
-                                System.out.println("### Visualizar estado actual ###");
+                                System.out.println("\n### Visualizar estado actual ###");
                                 System.out.println("Jugador 1: " + player1.getName() + " (" + player1.getColor() + "). " + player1.getRemainingPieces() + " Piezas restantes.");
                                 System.out.println("Jugador 2: " + player2.getName() + " (" + player2.getColor() + "). " + player2.getRemainingPieces() + " Piezas restantes.");
-                                System.out.println("Turno de " + game.getCurrentPlayer().getName() + " (Jugador "+ game.getCurrentPlayer().getId()+ ").");
+                                System.out.println("\nTurno de " + game.getCurrentPlayer().getName() + " (Jugador "+ game.getCurrentPlayer().getId()+ ").");
                                 game.boardGetState();
 
                                 break;
 
                             case 3: //ver estadísticas generales
                                 System.out.println("\n### Visualizar estadísticas generales ###");
-                                System.out.println("Jugador 1: ");
-                                System.out.println("Nombre: " + player1.getName() + "\nColor: " + player1.getColor() + "\nPiezas restantes: " + player1.getRemainingPieces());
+                                System.out.println("Jugador 1 : " + player1.getName() + " (" + player1.getColor() + ")\nPiezas restantes: " + player1.getRemainingPieces());
                                 System.out.println("- Victorias: "+ player1.getWins());
                                 System.out.println("- Derrotas: " + player1.getLosses());
                                 System.out.println("- Empates: " + player1.getDraws());
 
-                                System.out.println("\nJugador 2: ");
-                                System.out.println("Nombre: " + player2.getName() + "\nColor: " + player2.getColor() + "\nPiezas restantes: " + player2.getRemainingPieces());
+                                System.out.println("\nJugador 2: " + player2.getName() + " (" + player2.getColor() + ")\nPiezas restantes: " + player2.getRemainingPieces());
                                 System.out.println("- Victorias: "+ player2.getWins());
                                 System.out.println("- Derrotas: " + player2.getLosses());
                                 System.out.println("- Empates: " + player2.getDraws());
+
+                                game.printHistory();
                                 break;
 
                             case 4:
@@ -100,12 +100,12 @@ public class Main {
                                 String resp = "";
                                 while (resp.isEmpty() || (resp.charAt(0) != 's' && resp.charAt(0) != 'n')){
 
-                                    System.out.print("¿Estas seguro de terminar la partida? (s/n): ");
+                                    System.out.print("\n¿Estas seguro de terminar la partida? (s/n): ");
                                     resp = scanner.nextLine().toLowerCase();
 
                                     if(!resp.isEmpty()) {
                                         if (resp.charAt(0) == 's') {
-                                            System.out.println("El juego se termina.");
+                                            System.out.println("\nLa partida se termina.");
                                             inGame = false;
                                         }
                                     }
@@ -113,22 +113,23 @@ public class Main {
                                 break;
 
                             default:
+                                System.out.println("Ingresa un número válido");
                                 break;
                         }
                         //comprobar quien es ganador
                         if(!game.esEmpate()){
                             int winner = game.getBoard().entregarGanador();
                             if(winner != 0){
-                                System.out.println("Juego termina, el ganador es el Jugador " + winner + " (" + (winner == 1 ? player1.getName() : player2.getName()) + ")!");
+                                System.out.println("\nJuego termina, el ganador es el Jugador " + winner + " (" + (winner == 1 ? player1.getName() : player2.getName()) + ")!");
                                 game.endGame();
                                 inGame = false;
                             }
                             else if(inGame){
-                                System.out.println("El juego continúa.");
+                                System.out.println("\nEl juego continúa.");
                             }
                         }
                         else{
-                            System.out.println("Juego termina en empate.");
+                            System.out.println("\nJuego termina en empate.");
                             game.endGame();
                             inGame = false;
                         }
