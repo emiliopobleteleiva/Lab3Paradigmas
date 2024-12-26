@@ -1,14 +1,10 @@
 plugins {
     id("java")
-    application
+    id("application")
 }
 
-group = "org.con4"
+group = "org.example"
 version = "1.0-SNAPSHOT"
-
-application {
-    mainClass.set("org.con4.Main") // Clase principal con paquete completo
-}
 
 repositories {
     mavenCentral()
@@ -19,6 +15,15 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
+application {
+    mainClass.set("org.example.Main_204446830_PobleteLeiva")
+}
+
 tasks.test {
     useJUnitPlatform()
+}
+
+// Configuración del estándar de entrada para la tarea run
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }

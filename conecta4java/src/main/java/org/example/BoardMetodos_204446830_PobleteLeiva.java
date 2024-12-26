@@ -1,4 +1,4 @@
-package org.con4;
+package org.example;
 
 public interface BoardMetodos_204446830_PobleteLeiva {
     boolean canPlay();

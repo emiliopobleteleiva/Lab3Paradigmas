@@ -1,8 +1,10 @@
-package org.con4;
+package org.example;
 
 import java.util.Scanner;
 
 public class Main_204446830_PobleteLeiva {
+
+
 
     private static int leerEntero(Scanner scanner, String mensaje) {
         int numero = -1;
@@ -78,8 +80,7 @@ public class Main_204446830_PobleteLeiva {
 
 
                     System.out.println("\n--- Configuración del juego ---");
-                    System.out.print("Ingrese cantidad de fichas por jugador: ");
-                    int gameRemainingPieces = scanner.nextInt();
+                    int gameRemainingPieces = leerEntero(scanner, "Ingrese cantidad de fichas por jugador: ");
 
                     Player_204446830_PobleteLeiva player1 = new Player_204446830_PobleteLeiva(1, nombrePlayer1, colorPlayer1, gameRemainingPieces);
                     Player_204446830_PobleteLeiva player2 = new Player_204446830_PobleteLeiva(2, nombrePlayer2, colorPlayer2, gameRemainingPieces);

@@ -1,4 +1,4 @@
-package org.con4;
+package org.example;
 
 public class Piece_204446830_PobleteLeiva {
     private String color;

@@ -1,4 +1,4 @@
-package org.con4;
+package org.example;
 
 public class Player_204446830_PobleteLeiva implements PlayerMetodos_204446830_PobleteLeiva {
     final private int id;

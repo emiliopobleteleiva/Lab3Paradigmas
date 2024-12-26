@@ -1,4 +1,4 @@
-package org.con4;
+package org.example;
 
 public class Board_204446830_PobleteLeiva implements BoardMetodos_204446830_PobleteLeiva {
     //se crean las variables a usar y se modifican como 'final' de manera que no puedan ser modificadas
