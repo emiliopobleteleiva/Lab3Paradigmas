@@ -1,11 +1,11 @@
 package org.con4;
 
-public class Piece {
+public class Piece_204446830_PobleteLeiva {
     private String color;
-    private Player player;
+    private Player_204446830_PobleteLeiva player;
 
     //crear clase
-    public Piece(String color, Player playerIn) {
+    public Piece_204446830_PobleteLeiva(String color, Player_204446830_PobleteLeiva playerIn) {
         this.color = color;
         this.player = playerIn;
     }
@@ -15,7 +15,7 @@ public class Piece {
         return color;
     }
 
-    public Player getPlayer() {
+    public Player_204446830_PobleteLeiva getPlayer() {
         return player;
     }
 }

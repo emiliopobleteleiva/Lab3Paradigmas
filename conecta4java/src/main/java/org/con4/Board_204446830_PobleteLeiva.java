@@ -1,18 +1,18 @@
 package org.con4;
 
-public class Board implements BoardMetodos{
+public class Board_204446830_PobleteLeiva implements BoardMetodos_204446830_PobleteLeiva {
     //se crean las variables a usar y se modifican como 'final' de manera que no puedan ser modificadas
-    private final Piece[][] tablero;
+    private final Piece_204446830_PobleteLeiva[][] tablero;
     private final int filas = 6;
     private final int columnas = 7;
 
     //Casilla vacía
-    Player none = new Player(0, "none", "-", 0);
-    Piece noPiece = none.getPiece();
+    Player_204446830_PobleteLeiva none = new Player_204446830_PobleteLeiva(0, "none", "-", 0);
+    Piece_204446830_PobleteLeiva noPiece = none.getPiece();
 
     //constructor del board
-    public Board() {
-        tablero = new Piece[filas][columnas];
+    public Board_204446830_PobleteLeiva() {
+        tablero = new Piece_204446830_PobleteLeiva[filas][columnas];
         for (int i = 0; i < filas; i++){
             for (int j = 0; j < columnas; j++){
                 tablero[i][j] = noPiece;
@@ -35,7 +35,7 @@ public class Board implements BoardMetodos{
     }
 
     @Override
-    public boolean playPiece(Piece piece, int columna){
+    public boolean playPiece(Piece_204446830_PobleteLeiva piece, int columna){
         if(columna > 6 || columna < 0){
             System.out.println("Valor columna fuera de rango."); //fuera de rango
             return false;
@@ -70,7 +70,7 @@ public class Board implements BoardMetodos{
     @Override
     public int verticalCheck(){
         int count = 0;
-        Piece piezaActual = noPiece;
+        Piece_204446830_PobleteLeiva piezaActual = noPiece;
 
         for(int j = 0; j < 7; j++){
             for(int i = 0; i < 6; i++){
@@ -98,7 +98,7 @@ public class Board implements BoardMetodos{
     @Override
     public int horizontalCheck() {
         int count = 0;
-        Piece piezaActual = noPiece;
+        Piece_204446830_PobleteLeiva piezaActual = noPiece;
 
         for(int i = 0; i < 6; i++){
             for(int j = 0; j < 7; j++){
@@ -126,7 +126,7 @@ public class Board implements BoardMetodos{
     @Override
     public int diagonalCheck() {
         int count = 0;
-        Piece piezaActual = noPiece;
+        Piece_204446830_PobleteLeiva piezaActual = noPiece;
 
         for (int i = 0; i <= filas - 4; i++) {
             for (int j = 0; j <= columnas - 4; j++) {

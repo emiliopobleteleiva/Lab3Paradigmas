@@ -2,19 +2,60 @@ package org.con4;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main_204446830_PobleteLeiva {
+
+    private static int leerEntero(Scanner scanner, String mensaje) {
+        int numero = -1;
+        boolean entradaValida = false;
+
+        while (!entradaValida) {
+            System.out.print(mensaje);
+            if (scanner.hasNextInt()) { // Verifica si la entrada es un entero
+                numero = scanner.nextInt();
+                entradaValida = true; // Sal del bucle si es válido
+            } else {
+                System.out.println("Entrada inválida. Por favor, ingresa un número entero.");
+                scanner.next(); // Descarta la entrada no válida
+            }
+        }
+        return numero;
+    }
+
+    private static boolean volverAJugar(Scanner scanner, Game_204446830_PobleteLeiva game, int gameRemainingPieces){
+        String resp = "";
+        while (resp.isEmpty() || (resp.charAt(0) != 's' && resp.charAt(0) != 'n')){
+
+            scanner.nextLine();
+            System.out.print("Jugar de nuevo? (s/n): ");
+
+            resp = scanner.nextLine().toLowerCase();
+
+            if(!resp.isEmpty()) {
+                if (resp.charAt(0) == 'n') {
+                    System.out.println("\nSe termina el juego.");
+                    return false;
+                }
+                else if(resp.charAt(0) == 's'){
+                    game.resetGame(gameRemainingPieces);
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         boolean gameloop = true;
-        Game game = null;
+        Game_204446830_PobleteLeiva game = null;
 
         while(gameloop){
             System.out.println("\nConecta4 - Menú Principal:");
             System.out.println("1. Crear nuevo juego");
             System.out.println("2. Salir del juego");
-            System.out.print("\nIngrese su opción: ");
 
-            int option = scanner.nextInt();
+            int option = leerEntero(scanner, "\nIngrese su opción: ");
 
             scanner.nextLine();
 
@@ -40,10 +81,10 @@ public class Main {
                     System.out.print("Ingrese cantidad de fichas por jugador: ");
                     int gameRemainingPieces = scanner.nextInt();
 
-                    Player player1 = new Player(1, nombrePlayer1, colorPlayer1, gameRemainingPieces);
-                    Player player2 = new Player(2, nombrePlayer2, colorPlayer2, gameRemainingPieces);
+                    Player_204446830_PobleteLeiva player1 = new Player_204446830_PobleteLeiva(1, nombrePlayer1, colorPlayer1, gameRemainingPieces);
+                    Player_204446830_PobleteLeiva player2 = new Player_204446830_PobleteLeiva(2, nombrePlayer2, colorPlayer2, gameRemainingPieces);
 
-                    game = new Game(player1, player2);
+                    game = new Game_204446830_PobleteLeiva(player1, player2);
 
                     boolean inGame = true;
                     while(inGame){
@@ -52,14 +93,13 @@ public class Main {
                         System.out.println("2. Visualizar estado actual");
                         System.out.println("3. Ver estadísticas generales");
                         System.out.println("4. Terminar partida");
-                        System.out.print("\nIngrese su opción: ");
 
-                        int newOption = scanner.nextInt();
+                        int newOption = leerEntero(scanner, "\nIngrese su opción: ");
 
                         switch(newOption){
                             case 1:
                                 System.out.println("\n### Realizar Jugada ###");
-                                Player p = game.getCurrentPlayer();
+                                Player_204446830_PobleteLeiva p = game.getCurrentPlayer();
                                 System.out.println("Turno de: " + p.getName() + " (" + p.getColor() + ")");
                                 System.out.println("Fichas restantes: " + p.getRemainingPieces());
 
@@ -82,7 +122,10 @@ public class Main {
 
                             case 3: //ver estadísticas generales
                                 System.out.println("\n### Visualizar estadísticas generales ###");
-                                System.out.println("Jugador 1 : " + player1.getName() + " (" + player1.getColor() + ")\nPiezas restantes: " + player1.getRemainingPieces());
+
+                                game.printHistory();
+
+                                System.out.println("\nJugador 1 : " + player1.getName() + " (" + player1.getColor() + ")\nPiezas restantes: " + player1.getRemainingPieces());
                                 System.out.println("- Victorias: "+ player1.getWins());
                                 System.out.println("- Derrotas: " + player1.getLosses());
                                 System.out.println("- Empates: " + player1.getDraws());
@@ -92,7 +135,6 @@ public class Main {
                                 System.out.println("- Derrotas: " + player2.getLosses());
                                 System.out.println("- Empates: " + player2.getDraws());
 
-                                game.printHistory();
                                 break;
 
                             case 4:
@@ -122,16 +164,24 @@ public class Main {
                             if(winner != 0){
                                 System.out.println("\nJuego termina, el ganador es el Jugador " + winner + " (" + (winner == 1 ? player1.getName() : player2.getName()) + ")!");
                                 game.endGame();
-                                inGame = false;
+                                //se reinician los stats del juego (nuevo board y se reinician las piezas restantes)
+                                if (!volverAJugar(scanner, game, gameRemainingPieces)) {
+                                    inGame = false; // Salir del ciclo del juego
+                                }
+
+
                             }
                             else if(inGame){
+                                game.cambiarTurno();
                                 System.out.println("\nEl juego continúa.");
                             }
                         }
                         else{
                             System.out.println("\nJuego termina en empate.");
                             game.endGame();
-                            inGame = false;
+                            if (!volverAJugar(scanner, game, gameRemainingPieces)) {
+                                inGame = false; // Salir del ciclo del juego
+                            }
                         }
 
                     }

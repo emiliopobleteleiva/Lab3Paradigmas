@@ -1,19 +1,19 @@
 package org.con4;
 
-public class Player implements PlayerMetodos{
+public class Player_204446830_PobleteLeiva implements PlayerMetodos_204446830_PobleteLeiva {
     final private int id;
     final private String name;
-    final private Piece piece;
+    final private Piece_204446830_PobleteLeiva piece;
     private int wins;
     private int losses;
     private int draws;
     private int remainingPieces;
 
     //crear clase Player
-    public Player(int id, String name, String colorString, int remainingPieces){
+    public Player_204446830_PobleteLeiva(int id, String name, String colorString, int remainingPieces){
         this.id = id;
         this.name = name;
-        this.piece = new Piece(colorString, this);
+        this.piece = new Piece_204446830_PobleteLeiva(colorString, this);
         this.wins = 0;
         this.losses = 0;
         this.draws = 0;
@@ -28,7 +28,7 @@ public class Player implements PlayerMetodos{
         return name;
     }
 
-    public Piece getPiece(){
+    public Piece_204446830_PobleteLeiva getPiece(){
         return piece;
     }
 
@@ -73,7 +73,13 @@ public class Player implements PlayerMetodos{
     }
 
     @Override
+    public void setRemainingPieces(int cant){
+        this.remainingPieces = cant;
+    }
+
+    @Override
     public void actualizarEstadisticas(int event){
+
         switch(event){
             case 0:
                 this.playerDraw();
